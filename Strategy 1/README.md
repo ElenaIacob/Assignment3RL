@@ -1,6 +1,7 @@
 Strategy 1: Double DQN with n-Step Returns + Curriculum Learning
 
 This strategy builds on a standard DQN by combining three improvements:
+
 	1.	Double DQN logic – uses two networks (online + target) to avoid Q-value overestimation and stabilize training.
 	2.	n-Step Returns (n = 5) – lets rewards travel several steps forward, helping the agent learn from delayed feedback.
 	3.	Curriculum Learning – starts with shorter poles (easier), then gradually increases pole length as training progresses, so the agent generalizes across different dynamics.
@@ -9,6 +10,7 @@ This strategy builds on a standard DQN by combining three improvements:
 The goal of this strategy is to train an agent that generalizes across different pole lengths in the CartPole-v1 environment, rather than overfitting to the default setup.
 
 Training Setup
+
 	•	Environment: CartPole-v1 (Gymnasium)
 	•	Framework: PyTorch
 	•	Steps: 800 000
@@ -23,6 +25,7 @@ Training Setup
 Training is step-based, so ε decays smoothly and the agent gradually shifts from exploration to exploitation.
 
 How It Works
+
 	1.	The online network predicts Q-values and selects actions.
 	2.	The target network evaluates those actions (this separation keeps learning stable).
 	3.	Each experience (state, action, reward, next_state, done) is stored in a replay buffer and randomly sampled to break temporal correlation.
